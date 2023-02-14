@@ -20,6 +20,7 @@ jobs:
         id: set-meta
         run: |
           LINUX_TARGETS=$(cat "$JSON_FILE_NAME"|jq -c .linux_targets )
+          echo "linux-targets=$LINUX_TARGETS"
           echo "linux-targets=$LINUX_TARGETS" >> $GITHUB_OUTPUT
         shell: bash
         env:
@@ -31,7 +32,10 @@ jobs:
     uses: ./.github/workflows/call-build-linux-packages.yaml
     strategy:
       fail-fast: true
-      matrix: ${{ fromJson(needs.generate-meta.outputs.linux-targets) }}
+      matrix:
+        distro: [""]
+        runner: ["ubuntu-latest"]
+        include: ${{ fromJson(needs.generate-meta.outputs.linux-targets) }}
     with:
       distro: ${{ matrix.distro }}
       runner: ${{ matrix.runner }}
