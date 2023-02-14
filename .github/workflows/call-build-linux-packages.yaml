@@ -1,0 +1,24 @@
+---
+name: Generate Linux packages
+on:
+  workflow_call:
+    inputs:
+      distro:
+        description: The build target to compile and package.
+        required: true
+        type: string
+      runner:
+        description: The runner label to use.
+        required: false
+        type: string
+        default: ubuntu-latest
+
+jobs:
+  build-packages:
+    name: ${{ inputs.distro }} package build and upload
+    runs-on: ${{ inputs.runner }}
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: |
+          echo ${{ inputs.distro }}- ${{ inputs.runner }}
+        shell: bash

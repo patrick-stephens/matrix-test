@@ -1,0 +1,16 @@
+{
+    "linux_targets": [
+      {
+        "distro" : "centos/6",
+        "runner" : "ubuntu-latest-8-cores"
+      },
+      {
+        "distro" : "centos/7",
+        "runner" : "ubuntu-latest"
+      },
+      {
+        "distro" : "ubuntu/22.04.arm64v8",
+        "runner" : "ubuntu-latest-8-cores"
+      }
+    ]
+  }
